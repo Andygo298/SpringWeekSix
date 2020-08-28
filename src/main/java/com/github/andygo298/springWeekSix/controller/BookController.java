@@ -27,7 +27,7 @@ public class BookController {
     @GetMapping("/downloadCsv")
     public void downloadCSV(@RequestBody BookFilter bookFilter, HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
-        response.setHeader("Content-Disposition", "attachment; file=customers.csv");
+        response.setHeader("Content-Disposition", "attachment; file=bookReport.csv");
         List<Long> authorIdsByNames = bookRepoService.getAuthorIdsByNames(bookFilter);
         List<Long> genreIdsByNames = bookRepoService.getGenreIdsByNames(bookFilter);
         BookDto bookDto = BookDto.builder()

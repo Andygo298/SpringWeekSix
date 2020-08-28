@@ -13,14 +13,14 @@ public class WriteDataToCsv {
     public static void writeObjectToCSV(PrintWriter writer, List<ReportDto> report) {
         try (
                 CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-                        .withHeader("bookName", "genreName", "authorName", "creationDate"))
+                        .withHeader("name", "create year", "genre", "author"))
         ) {
             for (ReportDto element : report) {
                 List<String> data = List.of(
                         element.getBookName(),
+                        element.getCreationDate().format(DateTimeFormatter.ofPattern("yyyy")),
                         element.getGenreName(),
-                        element.getAuthorName(),
-                        element.getCreationDate().format(DateTimeFormatter.ofPattern("yyyy"))
+                        element.getAuthorName()
                 );
 
                 csvPrinter.printRecord(data);
